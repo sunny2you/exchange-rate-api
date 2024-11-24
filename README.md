@@ -41,8 +41,8 @@ project-root/
 
 ### 1️⃣ 저장소 클론
 ```bash
-git clone https://github.com/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/sunny2you/exchange-rate-api.git
+cd exchange-rate-api
 ```
 
 ### 2️⃣ 의존성 설치
@@ -51,9 +51,9 @@ npm install
 ```
 
 ### 3️⃣ 환경 변수 설정
-`.env.example` 파일을 참고해 `.env` 파일을 생성하고 아래 정보를 입력하세요:
+`.env.example` 파일을 참고해 `.env` 파일을 생성하고 아래 정보를 입력하세요(해당 URI는 과제 전용 계정으로 생성되었으며, 제한된 권한만 부여된 계정입니다):
 ```plaintext
-MONGODB_URI=your-mongodb-uri
+MONGO_URI=mongodb+srv://sampleuser:samplepass@cluster0.dwmppug.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 PORT=5110
 ```
 
