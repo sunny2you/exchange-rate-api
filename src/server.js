@@ -6,7 +6,7 @@ const schema = require('../graphql/schema');
 
 const app = express();
 
-// MongoDB 연결
+
 connectDB();
 
 // GraphQL 미들웨어

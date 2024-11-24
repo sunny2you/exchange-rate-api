@@ -112,21 +112,21 @@ mutation {
 
 ### 📖 환율 조회
 ```bash
-curl -XPOST "http://localhost:5001/graphql" \
+curl -XPOST "http://localhost:5110/graphql" \
 -H "Content-Type: application/json" \
--d '{"query": "query { getExchangeRate(src: \"krw\", tgt: \"usd\") { src tgt rate date } }"}'
+-d '{"query": "query { getExchangeRate(src: \"krw\", tgt: \"usd\") { src tgt rate date } }"}' 
 ```
 
 ### ✍️ 환율 등록
 ```bash
-curl -XPOST "http://localhost:5001/graphql" \
+curl -XPOST "http://localhost:5110/graphql" \
 -H "Content-Type: application/json" \
 -d '{"query": "mutation { postExchangeRate(info: { src: \"usd\", tgt: \"krw\", rate: 1350.0, date: \"2023-11-20\" }) { src tgt rate date } }"}'
 ```
 
 ### ❌ 환율 삭제
 ```bash
-curl -XPOST "http://localhost:5001/graphql" \
+curl -XPOST "http://localhost:5110/graphql" \
 -H "Content-Type: application/json" \
 -d '{"query": "mutation { deleteExchangeRate(info: { src: \"usd\", tgt: \"krw\", date: \"2023-11-20\" }) { src tgt rate date } }"}'
 ```
