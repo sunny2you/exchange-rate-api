@@ -19,7 +19,7 @@ async function getExchangeRate(_, { src, tgt }) {
     const latestRate = await ExchangeRate.findOne({ src, tgt }).sort({ date: -1 });
 
     if (latestRate) {
-      return latestRate; // DB에 있으면 빠르게 반환
+      return latestRate; 
     }
 
     // 3. 반대 방향 환율 계산 (Lazy Evaluation)
@@ -54,9 +54,8 @@ async function deleteExchangeRate(_, { info }) {
   const { src, tgt, date } = info;
   const deletedRate = await ExchangeRate.findOneAndDelete({ src, tgt, date });
 
-  if (!deletedRate) {
-    throw new Error(`No exchange rate found for ${src} to ${tgt} on ${date}`);
-  }
+  await cache.invalidate(`exchangeRate_${src}_${tgt}_${date}`);
+
   return deletedRate;
 }
 
