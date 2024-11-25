@@ -25,4 +25,5 @@ exchangeRateSchema.pre('findOneAndUpdate', function (next) {
   enforceSameCurrencyRate(update); 
   next();
 });
+
 module.exports = mongoose.model('ExchangeRate', exchangeRateSchema);

@@ -1,4 +1,5 @@
 const ExchangeRate = require('../models/ExchangeRate');
+
 const { calculateReverseRate } = require('./utils/exchangeRateUtils');
 
 async function getExchangeRate(_, { src, tgt }) {
