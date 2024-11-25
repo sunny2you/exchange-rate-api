@@ -1,7 +1,6 @@
 const { GraphQLObjectType, GraphQLSchema, GraphQLString, GraphQLFloat, GraphQLNonNull, GraphQLInputObjectType } = require('graphql');
 const resolvers = require('./resolvers');
 
-// GraphQL 타입 정의
 const ExchangeInfoType = new GraphQLObjectType({
   name: 'ExchangeInfo',
   fields: {
@@ -12,7 +11,6 @@ const ExchangeInfoType = new GraphQLObjectType({
   },
 });
 
-// GraphQL Input 타입 정의
 const InputUpdateExchangeInfo = new GraphQLInputObjectType({
   name: 'InputUpdateExchangeInfo',
   fields: {
@@ -32,7 +30,6 @@ const InputDeleteExchangeInfo = new GraphQLInputObjectType({
   },
 });
 
-// Query 정의
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
@@ -47,7 +44,6 @@ const RootQuery = new GraphQLObjectType({
   },
 });
 
-// Mutation 정의
 const Mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
@@ -68,7 +64,6 @@ const Mutation = new GraphQLObjectType({
   },
 });
 
-// GraphQL Schema 내보내기
 module.exports = new GraphQLSchema({
   query: RootQuery,
   mutation: Mutation,
