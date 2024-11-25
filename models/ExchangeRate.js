@@ -22,7 +22,7 @@ exchangeRateSchema.pre('save', function (next) {
 
 exchangeRateSchema.pre('findOneAndUpdate', function (next) {
   const update = this.getUpdate();
-  enforceSameCurrencyRate(update);
+  enforceSameCurrencyRate(update); 
   next();
 });
 

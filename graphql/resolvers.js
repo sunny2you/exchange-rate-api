@@ -1,5 +1,6 @@
 const ExchangeRate = require('../models/ExchangeRate');
-const { calculateReverseRate } = require('./utils/exchangeRateUtils.js');
+
+const { calculateReverseRate } = require('./utils/exchangeRateUtils');
 
 async function getExchangeRate(_, { src, tgt }) {
   try {
@@ -14,17 +15,20 @@ async function getExchangeRate(_, { src, tgt }) {
 
     const latestRate = await ExchangeRate.findOne({ src, tgt }).sort({ date: -1 });
 
-    if (latestRate) {
-      return latestRate; 
-    }
-
     const reverseRate = await calculateReverseRate(src, tgt);
 
-    if (!reverseRate) {
+    if (!latestRate && !reverseRate) {
       throw new Error(`Exchange rate for ${src} to ${tgt} could not be calculated.`);
     }
 
-    return reverseRate;
+    if (latestRate && reverseRate) {
+      const latestRateDate = new Date(latestRate.date);
+      const reverseRateDate = new Date(reverseRate.date);
+
+      return latestRateDate >= reverseRateDate ? latestRate : reverseRate;
+    }
+
+    return latestRate || reverseRate;
   } catch (error) {
     console.error(`[getExchangeRate Error] ${error.message}`);
     throw new Error(`Failed to retrieve exchange rate for ${src} to ${tgt}.`);

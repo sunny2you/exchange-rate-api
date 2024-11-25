@@ -1,8 +1,8 @@
 const ExchangeRate = require('../../models/ExchangeRate'); // 환율 모델
 
+
 async function calculateReverseRate(src, tgt) {
-  try {
-  
+
     const reverseRate = await ExchangeRate.findOne({ src: tgt, tgt: src }).sort({ date: -1 });
 
     if (!reverseRate) {
@@ -12,8 +12,8 @@ async function calculateReverseRate(src, tgt) {
     return {
       src,
       tgt,
-      rate: 1 / reverseRate.rate, // 반대 방향 환율 계산
-      date: reverseRate.date, // 동일 기준일 사용
+      rate: 1 / reverseRate.rate, 
+      date: reverseRate.date, 
     };
   } catch (error) {
     console.error(`[calculateReverseRate Error] ${error.message}`);
