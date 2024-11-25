@@ -1,8 +1,9 @@
-const ExchangeRate = require('../../models/ExchangeRate'); // 환율 모델
+
+const ExchangeRate = require('../../models/ExchangeRate'); 
 
 
 async function calculateReverseRate(src, tgt) {
-
+  try {
     const reverseRate = await ExchangeRate.findOne({ src: tgt, tgt: src }).sort({ date: -1 });
 
     if (!reverseRate) {
